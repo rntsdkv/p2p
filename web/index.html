@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>P2P NAT Traversal Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <main class="layout">
+      <section class="hero">
+        <p class="label">Proof of Concept</p>
+        <h1>P2P Video Through NAT</h1>
+        <p class="subtitle">
+          WebRTC media goes directly between peers. Server is used only for signaling and ICE
+          negotiation.
+        </p>
+      </section>
+
+      <section class="controls card">
+        <div class="row">
+          <label for="roomId">Room ID</label>
+          <input id="roomId" type="text" maxlength="32" spellcheck="false" />
+          <button id="randomRoomButton" class="ghost" type="button">Random</button>
+        </div>
+        <div class="row buttons">
+          <button id="startMediaButton" type="button">Start Camera</button>
+          <button id="joinButton" type="button">Join Room</button>
+          <button id="leaveButton" class="ghost" type="button" disabled>Leave</button>
+        </div>
+        <div class="meta">
+          <span>Signal status: <strong id="signalState" data-state="offline">offline</strong></span>
+          <span>Your ID: <strong id="selfId">-</strong></span>
+          <span>Peer ID: <strong id="peerId">-</strong></span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card video-card">
+          <header>Local Stream</header>
+          <video id="localVideo" autoplay muted playsinline></video>
+        </article>
+        <article class="card video-card">
+          <header>Remote Stream</header>
+          <video id="remoteVideo" autoplay playsinline></video>
+        </article>
+      </section>
+
+      <section class="card logs">
+        <header>Connection Log</header>
+        <pre id="log"></pre>
+      </section>
+    </main>
+
+    <script defer src="/app.js"></script>
+  </body>
+</html>

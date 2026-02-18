@@ -1,0 +1,22 @@
+{
+  "name": "p2p-nat-webrtc-poc",
+  "version": "0.1.0",
+  "description": "Proof-of-concept: P2P video call through NAT using WebRTC, ICE, STUN, optional TURN",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "keywords": [
+    "webrtc",
+    "p2p",
+    "nat-traversal",
+    "stun",
+    "turn",
+    "ice"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

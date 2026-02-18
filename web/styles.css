@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+  --bg-0: #04131d;
+  --bg-1: #06273b;
+  --bg-2: #0c4f71;
+  --card: rgba(4, 19, 29, 0.72);
+  --line: rgba(138, 204, 244, 0.3);
+  --text: #dbf1ff;
+  --muted: #8fc0df;
+  --accent: #55d9b8;
+  --warn: #f8a252;
+  --offline: #f27d7d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Sora", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 10% 10%, #1a7fb3 0%, transparent 35%),
+    radial-gradient(circle at 80% 20%, #135472 0%, transparent 45%),
+    linear-gradient(140deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+  pointer-events: none;
+}
+
+.layout {
+  width: min(1040px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 2.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.7rem, 2.7vw, 2.6rem);
+  margin: 0.2rem 0 0.5rem;
+}
+
+.label {
+  margin: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.25);
+}
+
+.controls {
+  padding: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.row label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input {
+  min-width: 180px;
+  flex: 1;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: rgba(2, 9, 14, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.62rem 0.9rem;
+  color: #062636;
+  font-family: inherit;
+  font-weight: 700;
+  background: linear-gradient(135deg, #9be7ff, #55d9b8);
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.2rem;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+#signalState[data-state="offline"] {
+  color: var(--offline);
+}
+
+#signalState[data-state="local"] {
+  color: var(--warn);
+}
+
+#signalState[data-state="signaling"] {
+  color: #fbe891;
+}
+
+#signalState[data-state="connected"] {
+  color: var(--accent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.video-card {
+  padding: 0.8rem;
+}
+
+.video-card header {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.45);
+  object-fit: cover;
+}
+
+.logs {
+  padding: 0.8rem;
+}
+
+.logs header {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.logs pre {
+  margin: 0;
+  min-height: 150px;
+  max-height: 250px;
+  overflow: auto;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  background: rgba(0, 0, 0, 0.3);
+  color: #daf4ff;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
