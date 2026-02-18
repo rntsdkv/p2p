@@ -139,6 +139,23 @@ button:disabled {
   color: var(--muted);
 }
 
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#natRoute,
+#trafficRate {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--text);
+}
+
+#natRoute {
+  word-break: break-all;
+}
+
 #signalState[data-state="offline"] {
   color: var(--offline);
 }

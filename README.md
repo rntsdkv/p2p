@@ -83,6 +83,14 @@ docker compose up --build
 - For HTTPS deployment, use `wss://` automatically (frontend logic already handles this).
 - In production, set a real TURN secret/user policy and `external-ip` in `turn/turnserver.conf`.
 
-## Suggested next step
+## NAT proof in client logs
 
-- Add a diagnostics panel that prints ICE candidate types (`host`, `srflx`, `relay`) to explicitly prove NAT traversal mode during defense/demo.
+- The web log prints local and remote candidate types (`host`, `srflx`, `relay`).
+- After ICE is connected, the client logs the selected candidate pair from `RTCPeerConnection.getStats()`.
+- Runtime panel shows selected route endpoint and traffic rate:
+  - `NAT route` = selected ICE path with candidate type/protocol/address:port
+  - `Traffic (1s)` = RTP packet and byte rate from `outbound-rtp`/`inbound-rtp` stats
+- Interpretation:
+  - If any side is `relay` -> media path is via TURN relay.
+  - If there is `srflx/prflx` and no `relay` -> direct NAT traversal (hole punching).
+  - If both are `host` -> usually same LAN or directly reachable addresses.
